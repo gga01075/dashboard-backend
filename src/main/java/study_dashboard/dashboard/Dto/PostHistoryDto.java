@@ -9,4 +9,5 @@ public class PostHistoryDto {
     private String postTitle;
     private String userID;
     private String postID;
+    private String content;
 }

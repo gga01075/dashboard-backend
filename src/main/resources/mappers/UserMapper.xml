@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="study_dashboard.dashboard.Mapper.UserMapper">
+
+    <!-- userID로 유저 조회 -->
+    <select id="findUserNameList" parameterType="string" resultType="study_dashboard.dashboard.Dto.UserDto">
+        SELECT
+            USERID
+        FROM
+            USERS
+        WHERE
+            userID = #{userID}
+    </select>
+
+    <!-- 유저 삽입 -->
+    <insert id="insertUser" parameterType="study_dashboard.dashboard.Dto.UserDto">
+        INSERT INTO USERS (userID, password, name)
+        VALUES (#{userID}, #{password}, #{name})
+    </insert>
+
+</mapper>

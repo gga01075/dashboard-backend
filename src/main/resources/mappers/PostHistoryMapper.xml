@@ -10,4 +10,9 @@
         FROM
         POSTS
     </select>
+
+    <insert id="insertPost" parameterType="study_dashboard.dashboard.Dto.PostHistoryDto">
+        INSERT INTO POSTS (postID, postTitle, content, userID)
+        VALUES (UUID(), #{postTitle}, #{content}, #{userID})
+    </insert>
 </mapper>

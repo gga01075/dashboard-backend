@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface PostHistoryMapper {
     List<PostHistoryDto> getPostTitleList();
+    void insertPost(PostHistoryDto postHistoryDto);
 }

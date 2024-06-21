@@ -14,8 +14,10 @@ public class PostHistoryService {
     PostHistoryMapper postHistoryMapper;
 
     public List<PostHistoryDto> getPostTitleList() {
-        List<PostHistoryDto> result =  postHistoryMapper.getPostTitleList();
-        return result;
+           return postHistoryMapper.getPostTitleList();
     }
 
+    public void registerPost(PostHistoryDto postHistoryDto) {
+        postHistoryMapper.insertPost(postHistoryDto);
+    }
 }
