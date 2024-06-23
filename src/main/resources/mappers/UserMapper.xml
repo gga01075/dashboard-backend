@@ -3,7 +3,7 @@
 <mapper namespace="study_dashboard.dashboard.Mapper.UserMapper">
 
     <!-- userID로 유저 조회 -->
-    <select id="findUserNameList" parameterType="string" resultType="study_dashboard.dashboard.Dto.UserDto">
+    <select id="findUserNameList" parameterType="string" resultType="string">
         SELECT
             USERID
         FROM
@@ -11,6 +11,8 @@
         WHERE
             userID = #{userID}
     </select>
+
+
 
     <!-- 유저 삽입 -->
     <insert id="insertUser" parameterType="study_dashboard.dashboard.Dto.UserDto">
