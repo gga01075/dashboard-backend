@@ -10,7 +10,25 @@ import study_dashboard.dashboard.Dto.UserDto;
 
 //import sumichan.sumichan.dto.client.MessageCodeAndResDto;
 import javax.crypto.SecretKey;
+/*
+javax.crypto.spec.SecretKeySpec클래스는
+Java의 암호화 API에서 사용되는 중요한 클래스입니다.
+
+1. 비밀 키 생성: 바이트 배열로부터 비밀 키를 생성합니다.
+2. 알고리즘 지정: 생성된 키와 함께 사용할 암호화 알고리즘을 지정합니다.
+3. 키 재사용: 생성된 키 객체를 여러 암호화 또는 복호화 작업에 재사용할 수 있습니다.
+4. 다양한 알고리즘 지원: AES, DES, TripleDES 등 다양한 대칭 키 알고리즘을 지원합니다.
+5. javax.crypto.SecretKey 인터페이스 구현: 이 인터페이스를 구현하여 다른 암호화 관련 클래스와 호환됩니다.
+*/
 import javax.crypto.spec.SecretKeySpec;
+/*
+java.time.ZonedDateTime클래스는 날짜, 시간, 시간대 정보를 모두 포함하는 클래스입니다.
+사용 목적: 특정 시간대의 날짜와 시간을 다룰 때 사용됩니다.
+주요 특징:
+시간대 정보 포함
+불변 객체 (스레드 안전)
+ISO-8601 캘린더 시스템 사용
+ */
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Base64;
