@@ -2,8 +2,10 @@ package study_dashboard.dashboard.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import study_dashboard.dashboard.Dto.UserDto;
 import study_dashboard.dashboard.Mapper.UserMapper;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +17,8 @@ public class UserService {
     UserMapper userMapper;
 
     public boolean checkUserExists(String userID) {
-        Optional<List<String>> userNamesOptional = userMapper.findUserNameList(userID);
-        return userNamesOptional.isPresent() && !userNamesOptional.get().isEmpty();
+        String userNamesOptional = userMapper.findUserIdList(userID);
+        return StringUtils.hasText(userNamesOptional);
     }
 
     public void signUp(UserDto userDto) {

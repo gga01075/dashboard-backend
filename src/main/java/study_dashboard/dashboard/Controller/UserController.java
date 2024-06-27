@@ -23,10 +23,12 @@ public class UserController {
 
     @PostMapping("/signUp")
     public ResponseEntity<CommonResponse<String>> signUp(@RequestBody UserDto userDto) {
+
         boolean isUserExists = userService.checkUserExists(userDto.getUserID());
         if (isUserExists) {
             return ResponseUtils.buildErrorResponse("이미 존재하는 ID입니다", HttpStatus.CONFLICT);
         }
+
         try {
             userService.signUp(userDto);
             return ResponseUtils.buildCreatedResponse("USER signUp successfully!");
