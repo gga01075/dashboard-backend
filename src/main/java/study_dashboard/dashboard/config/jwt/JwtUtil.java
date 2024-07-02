@@ -57,10 +57,14 @@ public class JwtUtil {
     {
         return createToken(userDto, accessTokenExpTime);
     }
+
+
     public String createRefreshToken(UserDto userDto)
     {
         return createToken(userDto, refreshTokenExpTime);
     }
+
+
     /**
      * JWT 생성
      * @param userDto
@@ -69,14 +73,14 @@ public class JwtUtil {
      */
     private String createToken(UserDto userDto, long expireTime)
     {
-        ZonedDateTime now = ZonedDateTime.now();
-        ZonedDateTime tokenValidity = now.plusSeconds(expireTime);
-        return Jwts.builder()
-                .signWith(key, SignatureAlgorithm.HS256)
-                .setSubject(userDto.getUserID())
-                .setExpiration(Date.from(tokenValidity.toInstant()))
-                .setIssuedAt(Date.from(now.toInstant()))
-                .compact();
+        ZonedDateTime now = ZonedDateTime.now();  // 현재시간
+        ZonedDateTime tokenValidity = now.plusSeconds(expireTime); // 현재시간 + 만료시간
+        return Jwts.builder() // JWT 빌더를 사용한 토큰 생성
+                .signWith(key, SignatureAlgorithm.HS256) // key라는 비밀키와 HS256 알고리즘을 사용하여 토큰에 서명
+                .setSubject(userDto.getUserID()) // 토큰의 주제를 사용자 ID로 설정
+                .setExpiration(Date.from(tokenValidity.toInstant())) // 만료 시간 설정
+                .setIssuedAt(Date.from(now.toInstant())) // 발행 시간 설정
+                .compact(); // 토큰 생성 및 반환
     }
     /**
      * Token에서 User ID 추출

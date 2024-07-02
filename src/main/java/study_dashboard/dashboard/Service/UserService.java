@@ -25,4 +25,8 @@ public class UserService {
         userMapper.insertUser(userDto);
     }
 
+    public void signIn(UserDto userDto) {
+
+    }
+
 }

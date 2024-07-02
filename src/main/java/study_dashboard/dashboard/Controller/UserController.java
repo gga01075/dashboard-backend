@@ -37,4 +37,9 @@ public class UserController {
         }
     }
 
+    @PostMapping("/signIn")
+    public ResponseEntity<CommonResponse<String>> signIn(@RequestBody UserDto userDto) {
+        String token = userService.signIn(userDto);
+        return ResponseEntity.status(HttpStatus.OK).body(token);
+    }
 }
