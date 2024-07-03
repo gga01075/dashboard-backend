@@ -39,7 +39,22 @@ public class UserController {
 
     @PostMapping("/signIn")
     public ResponseEntity<CommonResponse<String>> signIn(@RequestBody UserDto userDto) {
+        /*
+            로그인을 한다면 무엇이 필요할까?
+            1. 프론트에서 전송한 userId와 password가 DB에 있는 값과 일치여부 확인
+            2. JWT토큰 생성 및 발급
+            3.
+         */
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(userDto.getUserID(), userDto.getPassword())
+        );
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String token = jwtUtil.generateToken(userDetails.getUsername());
+
+
+
         String token = userService.signIn(userDto);
-        return ResponseEntity.status(HttpStatus.OK).body(token);
+        return ResponseUtils.buildSuccessResponse(token);
     }
 }
