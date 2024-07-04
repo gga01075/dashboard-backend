@@ -14,6 +14,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebSecurity   // 스프링 시큐리티를 활성화
 public class WebSecurityConfig {
 
+    private static final String[] AUTH_WHITELIST = {
+            "/api/v1/member/**", "/swagger-ui/**", "/api-docs", "/swagger-ui-custom.html",
+            "/v3/api-docs/**", "/api-docs/**", "/swagger-ui.html", "/api/v1/auth/**",
+            "/auth/**", "/users"
+    };
+
     //  최신 Spring Security에서는 SecurityFilterChain 빈을 정의하여 보안을 구성
     @Bean
     public SecurityFilterChain applicationSecurity(HttpSecurity http) throws Exception {
@@ -57,11 +63,11 @@ public class WebSecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 /*
                     authorizeHttpRequests(): HTTP 요청에 대한 접근 제어를 설정합니다.
-                    /users/signUp과 /users/signUp 엔드포인트는 모든 사용자에게 허용됩니다.
+                    AUTH_WHITELIST 엔드포인트는 모든 사용자에게 허용됩니다.
                     그 외의 모든 요청은 인증이 필요합니다.
                     */
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers("/users/signUp", "/users/signUp").permitAll()
+                        .requestMatchers(AUTH_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 );
 
